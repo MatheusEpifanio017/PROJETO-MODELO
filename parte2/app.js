@@ -10,15 +10,24 @@ function imprimirCupom (cliente, valorFinal) {
     console.log("Totala a Pagar:", valorFinal);
 }
 
+const valorFinal = financeiro.calcularTotalComDesconto(300, 15);
+
 const cliente1 = clientes.criarCliente(
-    "Matheus",
+    "Matheus Epifanio",
     "matheus@gmail.com",
     "VIP",
 );
-clientes.cadastrarCliente(cliente1)
 
+const cliente2 = clientes.criarCliente(
+    "Kyara Krumenauer",
+    "kyara@gmail.com",
+    "COMUM"
+)
+clientes.cadastrarCliente(cliente1);
+clientes.cadastrarCliente(cliente2);
 
-const valorFinal = financeiro.calcularTotalComDesconto(300, 15);
+const listaClientes = clientes.listarClientes ();
 
-imprimirCupom(cliente1.nome, valorFinal);
-
+for (let cliente of listaClientes) {
+  imprimirCupom(cliente.nome, valorFinal);
+}
