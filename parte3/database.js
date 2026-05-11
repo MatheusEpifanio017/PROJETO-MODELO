@@ -1,9 +1,11 @@
 const fs = require('fs');
-
+function definirCaminho(nomeArquivo) {
+    return `${__dirname}/dados/${nomeArquivo}.json`;
+}
 function lerArquivo(nomeArquivo) {
-    const caminho = __dirname + '/dados/' + nomeArquivo + '.json';
+    const caminho = definirCaminho(nomeArquivo);
     if (!fs.existsSync(caminho)) {
-    return[];
+      return[];
     }
 
     const conteudo = fs.readFileSync(caminho, 'utf-8');
@@ -13,7 +15,7 @@ function lerArquivo(nomeArquivo) {
 
 function salvarArquivo(nomeArquivo, dados) {
     const stringData = JSON.stringify(dados, null, 2);
-    const caminho = __dirname + '/dados/' + nomeArquivo + '.json';
+    const caminho = definirCaminho(nomeArquivo);
      fs.writeFileSync(caminho, stringData);
 }
 
